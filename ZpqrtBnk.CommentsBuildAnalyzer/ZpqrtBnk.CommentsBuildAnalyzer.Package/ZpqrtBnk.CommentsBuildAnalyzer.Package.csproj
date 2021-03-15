@@ -10,11 +10,11 @@
   <PropertyGroup>
     <Title>ZpqrtBnk Comments Build Analyzer</Title>
     <PackageId>ZpqrtBnk.CommentsBuildAnalyzer</PackageId>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>1.0.6</PackageVersion>
     <Authors>ZpqrtBnk</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/zpqrtbnk/comments-build-analyzers</PackageProjectUrl>
-    <Package>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</Package>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/zpqrtbnk/comments-build-analyzers</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Analyze C# comments at build time and raise warnings or errors.</Description>
@@ -38,5 +38,12 @@
       <TfmSpecificPackageFile Include="$(OutputPath)\ZpqrtBnk.CommentsBuildAnalyzer.dll" PackagePath="analyzers/dotnet/cs" />
     </ItemGroup>
   </Target>
+
+  <ItemGroup>
+    <None Include="icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

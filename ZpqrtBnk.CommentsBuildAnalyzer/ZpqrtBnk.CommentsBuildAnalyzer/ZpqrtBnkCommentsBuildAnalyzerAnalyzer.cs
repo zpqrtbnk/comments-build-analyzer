@@ -128,21 +128,25 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
 
         private static bool LookupTerm(string comment, Location location, SyntaxTreeAnalysisContext context, string term, DiagnosticDescriptor descriptor, int startOffset = -1)
         {
-            if (!comment.StartsWith(term, StringComparison.OrdinalIgnoreCase)) 
+            if (!comment.Contains(term)) 
                 return false;
 
-            var displayComment = comment.Substring(term.Length).TrimStart(' ', ':');
-            var displayOffset = comment.IndexOf(term, StringComparison.OrdinalIgnoreCase);
-            var locationToUse = location;
+            //var displayComment = comment.Substring(term.Length).TrimStart(' ', ':');
+            var termOffset = comment.IndexOf(term, StringComparison.OrdinalIgnoreCase);
+            Location diagnosticLocation;
 
             if (startOffset >= 0)
             {
-                locationToUse = Location.Create(
+                diagnosticLocation = Location.Create(
                     location.SourceTree,
-                    new TextSpan(startOffset + displayOffset, comment.Length - displayOffset));
+                    new TextSpan(startOffset + termOffset, term.Length /*comment.Length - termOffset*/));
+            }
+            else
+            {
+                diagnosticLocation = Location.Create(location.SourceTree, new TextSpan(termOffset, term.Length));
             }
 
-            context.ReportDiagnostic(Diagnostic.Create(descriptor, locationToUse, displayComment));
+            context.ReportDiagnostic(Diagnostic.Create(descriptor, diagnosticLocation /*, displayComment*/));
             return true;
         }
     }
