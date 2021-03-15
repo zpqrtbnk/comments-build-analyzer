@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.218
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZpqrtBnk.CommentsBuildAnalyzer", "ZpqrtBnk.CommentsBuildAnalyzer\ZpqrtBnk.CommentsBuildAnalyzer\ZpqrtBnk.CommentsBuildAnalyzer.csproj", "{1BD27B22-B249-478D-8D29-3FA409F3F013}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZpqrtBnk.CommentsBuildAnalyzer.Package", "ZpqrtBnk.CommentsBuildAnalyzer\ZpqrtBnk.CommentsBuildAnalyzer.Package\ZpqrtBnk.CommentsBuildAnalyzer.Package.csproj", "{0B510D37-FEAE-470F-86C3-6E6B02ADAE8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZpqrtBnk.CommentsBuildAnalyzer.Test", "ZpqrtBnk.CommentsBuildAnalyzer\ZpqrtBnk.CommentsBuildAnalyzer.Test\ZpqrtBnk.CommentsBuildAnalyzer.Test.csproj", "{70E96216-551E-4F8C-8743-D09D39AF6E51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BD27B22-B249-478D-8D29-3FA409F3F013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD27B22-B249-478D-8D29-3FA409F3F013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD27B22-B249-478D-8D29-3FA409F3F013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD27B22-B249-478D-8D29-3FA409F3F013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B510D37-FEAE-470F-86C3-6E6B02ADAE8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B510D37-FEAE-470F-86C3-6E6B02ADAE8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B510D37-FEAE-470F-86C3-6E6B02ADAE8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B510D37-FEAE-470F-86C3-6E6B02ADAE8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E96216-551E-4F8C-8743-D09D39AF6E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E96216-551E-4F8C-8743-D09D39AF6E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E96216-551E-4F8C-8743-D09D39AF6E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E96216-551E-4F8C-8743-D09D39AF6E51}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CCA9DDF-4C30-4AC7-A79D-7007037970F0}
+	EndGlobalSection
+EndGlobal

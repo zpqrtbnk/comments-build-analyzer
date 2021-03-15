@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>ZpqrtBnk Comments Build Analyzer</Title>
+    <PackageId>ZpqrtBnk.CommentsBuildAnalyzer</PackageId>
+    <PackageVersion>1.0.3</PackageVersion>
+    <Authors>ZpqrtBnk</Authors>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/zpqrtbnk/comments-build-analyzers</PackageProjectUrl>
+    <Package>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</Package>
+    <PackageProjectUrl>https://github.com/zpqrtbnk/comments-build-analyzers</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Analyze C# comments at build time and raise warnings or errors.</Description>
+    <Copyright>Copyright (C) 2021 ZpqrtBnk</Copyright>
+    <PackageTags>ZpqrtBnk.CommentsBuildAnalyzer, analyzers</PackageTags>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZpqrtBnk.CommentsBuildAnalyzer\ZpqrtBnk.CommentsBuildAnalyzer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <Target Name="_AddAnalyzersToOutput">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(OutputPath)\ZpqrtBnk.CommentsBuildAnalyzer.dll" PackagePath="analyzers/dotnet/cs" />
+    </ItemGroup>
+  </Target>
+
+</Project>
