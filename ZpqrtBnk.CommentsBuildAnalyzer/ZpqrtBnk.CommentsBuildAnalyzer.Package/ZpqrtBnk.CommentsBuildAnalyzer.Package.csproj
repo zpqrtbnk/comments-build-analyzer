@@ -10,7 +10,7 @@
   <PropertyGroup>
     <Title>ZpqrtBnk Comments Build Analyzer</Title>
     <PackageId>ZpqrtBnk.CommentsBuildAnalyzer</PackageId>
-    <PackageVersion>1.0.6</PackageVersion>
+    <PackageVersion>1.0.7</PackageVersion>
     <Authors>ZpqrtBnk</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/zpqrtbnk/comments-build-analyzers</PackageProjectUrl>

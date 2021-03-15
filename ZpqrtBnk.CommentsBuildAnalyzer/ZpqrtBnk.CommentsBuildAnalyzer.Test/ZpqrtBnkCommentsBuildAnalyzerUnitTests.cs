@@ -43,15 +43,13 @@ namespace NameSpace
     }
 }";
 
-            var expected1 = new DiagnosticResult(ZpqrtBnkCommentsBuildAnalyzerAnalyzer.DiagnosticId, 
-                    DiagnosticSeverity.Warning)
+            var expected1 = new DiagnosticResult("ZB1001", DiagnosticSeverity.Warning)
                 .WithMessage("FIXME comment in code.")
-                .WithLocation(8, 5);
+                .WithLocation(8, 8);
 
-            var expected2 = new DiagnosticResult(ZpqrtBnkCommentsBuildAnalyzerAnalyzer.DiagnosticId, 
-                    DiagnosticSeverity.Error)
+            var expected2 = new DiagnosticResult("ZB1002", DiagnosticSeverity.Warning)
                 .WithMessage("FIXME! comment in code.")
-                .WithLocation(11, 9);
+                .WithLocation(11, 12);
 
             await VerifyCS.VerifyAnalyzerAsync(code, expected1, expected2);
         }

@@ -25,8 +25,6 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class ZpqrtBnkCommentsBuildAnalyzerAnalyzer : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = "ZB1001";
-
         private const string Category = "ZpqrtBnk";
         private const string HelpLinkUri = "https://github.com/zpqrtbnk/Zpqrtbnk.CommentsBuildAnalyzer";
 
@@ -35,7 +33,7 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
         //private static readonly LocalizableString Description = "Found a FIX*ME comment.";
 
         private static readonly DiagnosticDescriptor WarnOnFixmeRule = new DiagnosticDescriptor(
-            DiagnosticId, 
+            "ZB1001", 
             Title, 
             "FIXME comment in code.", 
             Category, 
@@ -45,11 +43,11 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
             helpLinkUri: HelpLinkUri);
 
         private static readonly DiagnosticDescriptor ErrOnFixmeRule = new DiagnosticDescriptor(
-            DiagnosticId,
+            "ZB1002",
             Title,
             "FIXME! comment in code.",
             Category,
-            DiagnosticSeverity.Error, // report as an error
+            DiagnosticSeverity.Warning, // report as a warning
             true,
             //description: Description,
             helpLinkUri: HelpLinkUri);
@@ -94,7 +92,7 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
                 {
                     case SyntaxKind.SingleLineCommentTrivia:
 
-                        comment = node.ToString().TrimStart(TrimChars);
+                        comment = node.ToString();
                         AnalyzeComment(comment, node.GetLocation(), context);
                         break;
 
@@ -107,9 +105,7 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
 
                         foreach (var commentLine in comment.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
                         {
-                            var trimmedLine = commentLine.TrimStart(TrimChars);
-                            var trimLength = commentLine.Length - trimmedLine.Length;
-                            AnalyzeComment(trimmedLine, node.GetLocation(), context, offset + trimLength);
+                            AnalyzeComment(commentLine, node.GetLocation(), context, offset);
                             offset = offset + commentLine.Length + Environment.NewLine.Length;
                         }
 
@@ -131,22 +127,21 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
             if (!comment.Contains(term)) 
                 return false;
 
-            //var displayComment = comment.Substring(term.Length).TrimStart(' ', ':');
             var termOffset = comment.IndexOf(term, StringComparison.OrdinalIgnoreCase);
             Location diagnosticLocation;
 
             if (startOffset >= 0)
             {
-                diagnosticLocation = Location.Create(
-                    location.SourceTree,
-                    new TextSpan(startOffset + termOffset, term.Length /*comment.Length - termOffset*/));
+                diagnosticLocation = Location.Create(location.SourceTree,
+                    new TextSpan(startOffset + termOffset, term.Length));
             }
             else
             {
-                diagnosticLocation = Location.Create(location.SourceTree, new TextSpan(termOffset, term.Length));
+                diagnosticLocation = Location.Create(location.SourceTree, 
+                    new TextSpan(location.SourceSpan.Start + termOffset, term.Length));
             }
 
-            context.ReportDiagnostic(Diagnostic.Create(descriptor, diagnosticLocation /*, displayComment*/));
+            context.ReportDiagnostic(Diagnostic.Create(descriptor, diagnosticLocation));
             return true;
         }
     }
