@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZpqrtBnk.CommentsBuildAnaly
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZpqrtBnk.CommentsBuildAnalyzer.Test", "ZpqrtBnk.CommentsBuildAnalyzer\ZpqrtBnk.CommentsBuildAnalyzer.Test\ZpqrtBnk.CommentsBuildAnalyzer.Test.csproj", "{70E96216-551E-4F8C-8743-D09D39AF6E51}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7D5768A-EC13-4427-806F-013F1F76896B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
