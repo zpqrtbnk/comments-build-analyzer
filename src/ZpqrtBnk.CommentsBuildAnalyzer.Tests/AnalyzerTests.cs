@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2008-2021, ZpqrtBnk. All Rights Reserved.
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,14 +16,14 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VerifyCS = ZpqrtBnk.CommentsBuildAnalyzer.Test.CSharpCodeFixVerifier<
-    ZpqrtBnk.CommentsBuildAnalyzer.ZpqrtBnkCommentsBuildAnalyzerAnalyzer,
-    ZpqrtBnk.CommentsBuildAnalyzer.ZpqrtBnkCommentsBuildAnalyzerCodeFixProvider>;
+using VerifyCS = ZpqrtBnk.CommentsBuildAnalyzer.Testing.Verifiers.CSharpCodeFixVerifier<
+    ZpqrtBnk.CommentsBuildAnalyzer.Analyzer,
+    ZpqrtBnk.CommentsBuildAnalyzer.CodeFixProvider>;
 
-namespace ZpqrtBnk.CommentsBuildAnalyzer.Test
+namespace ZpqrtBnk.CommentsBuildAnalyzer.Tests
 {
     [TestClass]
-    public class ZpqrtBnkCommentsBuildAnalyzerUnitTest
+    public class AnalyzerTests
     {
         [TestMethod]
         public async Task Test()

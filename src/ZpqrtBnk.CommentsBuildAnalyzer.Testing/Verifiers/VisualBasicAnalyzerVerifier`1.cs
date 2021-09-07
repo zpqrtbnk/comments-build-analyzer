@@ -1,17 +1,17 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Testing.Verifiers;
 using Microsoft.CodeAnalysis.VisualBasic.Testing;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace ZpqrtBnk.CommentsBuildAnalyzer.Test
+namespace ZpqrtBnk.CommentsBuildAnalyzer.Testing.Verifiers
 {
     public static partial class VisualBasicAnalyzerVerifier<TAnalyzer>
         where TAnalyzer : DiagnosticAnalyzer, new()
     {
-        /// <inheritdoc cref="AnalyzerVerifier{TAnalyzer, TTest, TVerifier}.Diagnostic()"/>
+        /// <inheritdoc cref="Microsoft.CodeAnalysis.Diagnostic"/>
         public static DiagnosticResult Diagnostic()
             => VisualBasicAnalyzerVerifier<TAnalyzer, MSTestVerifier>.Diagnostic();
 

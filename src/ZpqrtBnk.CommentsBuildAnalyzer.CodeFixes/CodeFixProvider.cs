@@ -1,12 +1,23 @@
-﻿using Microsoft.CodeAnalysis;
+﻿// Copyright (c) 2008-2021, ZpqrtBnk. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
-using Microsoft.CodeAnalysis.Text;
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
@@ -15,12 +26,14 @@ using System.Threading.Tasks;
 
 namespace ZpqrtBnk.CommentsBuildAnalyzer
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(ZpqrtBnkCommentsBuildAnalyzerCodeFixProvider)), Shared]
-    public class ZpqrtBnkCommentsBuildAnalyzerCodeFixProvider : CodeFixProvider
+    // dummy codefix for tests (we don't provide a codefix)
+
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CodeFixProvider)), Shared]
+    public class CodeFixProvider : Microsoft.CodeAnalysis.CodeFixes.CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(ZpqrtBnkCommentsBuildAnalyzerAnalyzer.DiagnosticId); }
+            get { return ImmutableArray.Create("Analyzer.DiagnosticId"); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

@@ -1,19 +1,19 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Testing.Verifiers;
 using Microsoft.CodeAnalysis.VisualBasic.Testing;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace ZpqrtBnk.CommentsBuildAnalyzer.Test
+namespace ZpqrtBnk.CommentsBuildAnalyzer.Testing.Verifiers
 {
     public static partial class VisualBasicCodeFixVerifier<TAnalyzer, TCodeFix>
         where TAnalyzer : DiagnosticAnalyzer, new()
         where TCodeFix : CodeFixProvider, new()
     {
-        /// <inheritdoc cref="CodeFixVerifier{TAnalyzer, TCodeFix, TTest, TVerifier}.Diagnostic()"/>
+        /// <inheritdoc cref="Microsoft.CodeAnalysis.Diagnostic"/>
         public static DiagnosticResult Diagnostic()
             => VisualBasicCodeFixVerifier<TAnalyzer, TCodeFix, MSTestVerifier>.Diagnostic();
 

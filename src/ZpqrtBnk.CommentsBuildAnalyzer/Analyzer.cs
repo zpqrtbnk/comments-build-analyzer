@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2008-2021, ZpqrtBnk. All Rights Reserved.
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,7 +23,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace ZpqrtBnk.CommentsBuildAnalyzer
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class ZpqrtBnkCommentsBuildAnalyzerAnalyzer : DiagnosticAnalyzer
+    public class Analyzer : DiagnosticAnalyzer
     {
         private const string Category = "ZpqrtBnk";
         private const string HelpLinkUri = "https://github.com/zpqrtbnk/Zpqrtbnk.CommentsBuildAnalyzer";
@@ -33,12 +33,12 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
         //private static readonly LocalizableString Description = "Found a FIX*ME comment.";
 
         private static readonly DiagnosticDescriptor WarnOnFixmeRule = new DiagnosticDescriptor(
-            "ZB1001", 
-            Title, 
-            "FIXME comment in code.", 
-            Category, 
+            "ZB1001",
+            Title,
+            "FIXME comment in code.",
+            Category,
             DiagnosticSeverity.Warning, // report as a warning
-            true, 
+            true,
             //description: Description,
             helpLinkUri: HelpLinkUri);
 
@@ -52,7 +52,7 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
             //description: Description,
             helpLinkUri: HelpLinkUri);
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics 
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
             => ImmutableArray.Create(WarnOnFixmeRule, ErrOnFixmeRule);
 
         public override void Initialize(AnalysisContext context)
@@ -65,7 +65,7 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
             context.RegisterSyntaxTreeAction(HandleSyntaxTree);
         }
 
-        private void HandleSyntaxTree(SyntaxTreeAnalysisContext context)
+        private static void HandleSyntaxTree(SyntaxTreeAnalysisContext context)
         {
             try
             {
@@ -78,8 +78,6 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
             }
         }
 
-        private static readonly char[] TrimChars = { '/', '*', ' ' };
-
         private static void TryHandleSyntaxTree(SyntaxTreeAnalysisContext context)
         {
             SyntaxNode root = context.Tree.GetCompilationUnitRoot(context.CancellationToken);
@@ -88,6 +86,7 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
             {
                 string comment;
 
+                // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
                 switch (node.Kind())
                 {
                     case SyntaxKind.SingleLineCommentTrivia:
@@ -118,29 +117,18 @@ namespace ZpqrtBnk.CommentsBuildAnalyzer
         {
             // order is important else the FIX*ME rule triggers for FIX*ME!
             var _ =
-            LookupTerm(comment, location, context, "FIXME!", ErrOnFixmeRule, startOffset) ||
-            LookupTerm(comment, location, context, "FIXME", WarnOnFixmeRule, startOffset);
+                LookupTerm(comment, location, context, "FIXME!", ErrOnFixmeRule, startOffset) ||
+                LookupTerm(comment, location, context, "FIXME", WarnOnFixmeRule, startOffset);
         }
 
         private static bool LookupTerm(string comment, Location location, SyntaxTreeAnalysisContext context, string term, DiagnosticDescriptor descriptor, int startOffset = -1)
         {
-            if (!comment.Contains(term)) 
+            if (!comment.Contains(term))
                 return false;
 
             var termOffset = comment.IndexOf(term, StringComparison.OrdinalIgnoreCase);
-            Location diagnosticLocation;
-
-            if (startOffset >= 0)
-            {
-                diagnosticLocation = Location.Create(location.SourceTree,
-                    new TextSpan(startOffset + termOffset, term.Length));
-            }
-            else
-            {
-                diagnosticLocation = Location.Create(location.SourceTree, 
-                    new TextSpan(location.SourceSpan.Start + termOffset, term.Length));
-            }
-
+            if (startOffset < 0) startOffset = location.SourceSpan.Start;
+            var diagnosticLocation = Location.Create(location.SourceTree, new TextSpan(startOffset + termOffset, term.Length));
             context.ReportDiagnostic(Diagnostic.Create(descriptor, diagnosticLocation));
             return true;
         }

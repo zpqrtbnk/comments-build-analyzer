@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis.Testing.Verifiers;
 using Microsoft.CodeAnalysis.VisualBasic.Testing;
 
-namespace ZpqrtBnk.CommentsBuildAnalyzer.Test
+namespace ZpqrtBnk.CommentsBuildAnalyzer.Testing.Verifiers
 {
     public static partial class VisualBasicCodeRefactoringVerifier<TCodeRefactoring>
         where TCodeRefactoring : CodeRefactoringProvider, new()
